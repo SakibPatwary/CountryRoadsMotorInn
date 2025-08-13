@@ -8902,7 +8902,7 @@ h1, h2, h3, h4, h5,
     .room-wrap .text .btn-custom {
       display: inline-block;
       color: #000000;
-      border: 2px solid rgba(0, 0, 200, 0.1); }
+      border: 2px solid lightseagreen; }
   .room-wrap:hover, .room-wrap:focus {
     background: var(--info); }
     .room-wrap:hover .half.left-arrow:after, .room-wrap:focus .half.left-arrow:after {
@@ -8920,9 +8920,12 @@ h1, h2, h3, h4, h5,
       color: white; }
     .room-wrap:hover .text .btn-custom, .room-wrap:focus .text .btn-custom {
       display: inline-block;
-      color: #000000;
-      border: 2px solid white;
-      background: #fff; }
+      color: white;
+      border: 2px solid var(--white);
+      background: darkblue; }
+    .room-wrap:hover .room-features {
+      color: white;
+    }
 
 .room {
   display: block;
@@ -9394,7 +9397,7 @@ textarea.form-control {
   background-position: center center; }
 
 .star span {
-  color: #2f89fc;
+  color: darkblue;
   margin: 0 4px; }
 
 .testimony-section {
