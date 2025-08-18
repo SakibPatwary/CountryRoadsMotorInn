@@ -115,29 +115,73 @@
       </div>
       <div class="row justify-content-center block-9">
         <div class="col-md-10 order-md-last d-flex">
-          <form action="#" class="bg-white contact-form">
+          <form id="contact-form" class="bg-white contact-form">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Name">
+              <input type="text" name="from_name" class="form-control" placeholder="Your Name" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Email">
+              <input type="email" name="reply_to" class="form-control" placeholder="Your Email" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Subject">
+              <input type="text" name="subject" class="form-control" placeholder="Subject" required>
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              <textarea name="message" cols="30" rows="7" class="form-control" placeholder="Message"
+                required></textarea>
             </div>
+
+            <!-- Alert box -->
+            <div id="form-alert" class="alert d-none" role="alert"></div>
+
             <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+              <button type="submit" id="send-btn" class="btn btn-primary py-3 px-5">Send Message</button>
             </div>
           </form>
-
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("7AoPx5yHyJm_X2h59"); // Replace with your EmailJS public key
+    })();
+
+    const form = document.getElementById("contact-form");
+    const alertBox = document.getElementById("form-alert");
+    const sendBtn = document.getElementById("send-btn");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Show sending state
+      sendBtn.innerText = "Sending...";
+      sendBtn.disabled = true;
+      alertBox.className = "alert alert-info";
+      alertBox.innerText = "Sending your message...";
+      alertBox.classList.remove("d-none");
+
+      emailjs.sendForm("service_ia2hlis", "template_hnmuhwx", this)
+        .then(() => {
+          // Success
+          alertBox.className = "alert alert-success";
+          alertBox.innerText = "Message sent successfully!";
+          form.reset();
+        }, (error) => {
+          // Error
+          alertBox.className = "alert alert-danger";
+          alertBox.innerText = "Failed to send message. Try again!";
+          console.error("EmailJS error:", error);
+        })
+        .finally(() => {
+          sendBtn.innerText = "Send Message";
+          sendBtn.disabled = false;
+        });
+    });
+  </script>
 
 
   <footer class="ftco-footer ftco-section img p-4" style="background-image: url(images/bg_4.jpg);">
