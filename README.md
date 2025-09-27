@@ -5,4 +5,5 @@ It provides information about the motel, available rooms, facilities, and locati
 
 🚀 Tech Stack
 Frontend: HTML, CSS, JavaScript (static site)
+
 Live at: www.countryroadsnarrandera.com.au
